@@ -24,6 +24,7 @@ lucru pe ecran.
         /// <param name="numarLocuri"></param>
         public Autoturism(string producator, string model, Electric motor, int numarLocuri) : base(producator, model, motor)
         {
+            motor = new Electric();
             this.numarLocuri = numarLocuri;
         }
         /// <summary>
@@ -35,6 +36,7 @@ lucru pe ecran.
         /// <param name="numarLocuri"></param>
         public Autoturism(string producator, string model, Hibrid motor, int numarLocuri) : base(producator, model, motor)
         {
+            motor = new Hibrid();
             this.numarLocuri = numarLocuri;
         }
         /// <summary>

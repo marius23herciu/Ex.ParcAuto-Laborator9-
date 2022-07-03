@@ -14,6 +14,10 @@ namespace Ex.ParcAuto_Laborator9_
         {
             pornit = true;
         }
+        public void Opreste()
+        {
+            pornit = false;
+        }
     }
     class Diesel : Motor
     {

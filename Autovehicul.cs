@@ -14,7 +14,7 @@ namespace Ex.ParcAuto_Laborator9_
 
         private string producator;
         private string model;
-        private Motor motor;
+        public Motor motor;
         /// <summary>
         /// Creare autovehicul.
         /// </summary>
@@ -33,6 +33,10 @@ namespace Ex.ParcAuto_Laborator9_
         public virtual void Porneste()
         {
             this.motor.Porneste();
+        }
+        public void Opreste()
+        {
+            this.motor.Opreste();
         }
         public override string ToString()
         {

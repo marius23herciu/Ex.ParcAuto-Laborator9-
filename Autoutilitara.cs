@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ex.ParcAuto_Laborator9_
 {
-    class Autoutilitara : Autovehicul
+    abstract class Autoutilitara : Autovehicul
     {
         /*Autoutilitarele
 • vor avea doar motoare diesel
@@ -15,11 +15,8 @@ o 40t pentru camioane
 • vor avea o metoda de incarcaMarfa care va incarca o cantitate primita ca parametru asigurand
 incarcarea sub capacitatea maxima
 */
-
-        private double combustibilIncarcat;
-        public const int maximCombustibil = 10000;
-        private double materialeConstructiiToneIncarcate;
-        public const int maxMaterialeConstructii = 40;
+        public int capacitateMaxima;
+        public double cantitateIncarcata;
         /// <summary>
         /// Creaza autoutilitara.
         /// </summary>
@@ -31,55 +28,23 @@ incarcarea sub capacitatea maxima
 
         }
         /// <summary>
-        /// Adauga combustibil daca incarcarea cu materiale de constructii este 0.
+        /// Incarca marfa in autoutilitara.
         /// </summary>
-        /// <param name="combustibil"></param>
-        public void IncarcareCombustibil(double combustibil)
+        /// <param name="cantitate"></param>
+        public void IncarcareMarfa(double cantitate)
         {
-            if (materialeConstructiiToneIncarcate > 0)
+            if (this.cantitateIncarcata + cantitate <= capacitateMaxima)
             {
-                Console.WriteLine("Autoutilitara contine materiale de constructii. Puteti incarca combustibil dupa ce acestea vor fi descarcate.");
-            }
-            else if (this.combustibilIncarcat + combustibil <= maximCombustibil)
-            {
-                this.combustibilIncarcat += combustibil;
+                this.cantitateIncarcata += cantitate;
             }
             else
             {
-                Console.WriteLine("Combustibilul introdus depaseste capacitatea maxima.");
-            }
-        }
-        /// <summary>
-        ///  Adauga materiale de constructii daca cisterna de combustibil este 0.
-        /// </summary>
-        /// <param name="materialeConstructii"></param>
-        public void IncarcareMaterialeConstructii(double materialeConstructii)
-        {
-            if (combustibilIncarcat > 0)
-            {
-                Console.WriteLine("Cisterna contine combustibil. Puteti incarca materialele dupa ce aceasta va fi golita.");
-            }
-            else if (this.materialeConstructiiToneIncarcate + materialeConstructii <= maxMaterialeConstructii)
-            {
-                this.materialeConstructiiToneIncarcate += materialeConstructii;
-            }
-            else
-            {
-                Console.WriteLine("Greutatea introdusa depaseste capacitatea maxima.");
+                Console.WriteLine("Cantitatea introdusa depaseste capacitatea maxima.");
             }
         }
         public override string ToString()
         {
-            if (combustibilIncarcat == 0 && materialeConstructiiToneIncarcate != 0)
-            {
-                return base.ToString() + $"Tonaj materiale de constructii {materialeConstructiiToneIncarcate}";
-            }
-            if (materialeConstructiiToneIncarcate == 0 && combustibilIncarcat != 0)
-            {
-                return base.ToString() + $"Combustibil incarcat {combustibilIncarcat}\n";
-            }
-            return base.ToString() + $"Combustibil incarcat {combustibilIncarcat}\n" +
-                $"Tonaj materiale de constructii {materialeConstructiiToneIncarcate}";
+            return base.ToString() + $"Cantitate incarcata {cantitateIncarcata}\n";
         }
     }
 }
